@@ -29,8 +29,7 @@ wc snp_position.txt
 awk -F "\t" '{print NF; exit}' snp_position.txt
 du -h snp_position.txt
 ```
-
-Upon Inspection, I could identify that the :txt file:
+By inspecting this file, I learned that
 
 1. It contains 984 lines , 13198 words , 82763 characters
 2. It contains 15 columns
