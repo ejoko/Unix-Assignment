@@ -22,16 +22,16 @@ By inspecting this file, I learned that
 
 ### Attributes of  ``` snp_position.txt ```
 
-```Here is my snippet of code for data inspection```
+``` Here is my snippet of code for data inspection```
 
 ```sh
 wc snp_position.txt
 awk -F "\t" '{print NF; exit}' snp_position.txt
 du -h snp_position.txt
 ```
-By inspecting this file, I learned that
+By inspecting this file, I learned that.
 
-1. It contains 984 lines , 13198 words , 82763 characters
+1. It contains 984 lines, 13198 words, 82763 characters
 2. It contains 15 columns
 3. It has a file size of 49k
    
@@ -61,13 +61,14 @@ Here is my snippet of code used for data processing
 
 
 Here is a brief description of what my code does
-1. The SNP_ID and SNP data for the maize group (ZMMLR, ZMMIL, ZMMMR ) in the third column were pattern selected and columns 4 through 986 were extracted with headers.
+1. The SNP_ID and SNP data for the maize group (ZMMLR, ZMMIL, ZMMMR ) in the third column were pattern-selected and columns 4 through 986 were extracted with headers.
 2. The data is transposed to convert rows into columns.
 3. The contents of ``` transposed_maize_ genotypes.txt```   were sorted based on SNP_ID.
 4. The files ```snp_position_sorted.txt``` and ```Maize_sorted.txt``` are joined together.
-5. SNPs with unknown and multiple positions in the genome were extracted from the joint file. A header specifying SNP_ID , Chromosome, Position and Genotype Data was added.
-6. A for loop is applied to seperate the data according to chromosome, and sorted based on increasing and decreasing positions on the third column. A header is included to specify SNP_ID, Chromosome, Position and Genotype all within the data file. 
+5. SNPs with unknown and multiple positions in the genome were extracted from the joint file. A header specifying SNP_ID, Chromosome, Position and Genotype Data was added.
+6. A for loop is applied to separate the data according to chromosome and sorted based on increasing and decreasing positions on the third column. A header is included to specify SNP_ID, Chromosome, Position and Genotype all within the data file. 
 For the files with decreasing positions, missing data encoded by ? is replaced by - within the for loop command.
+7. A total of 20 files with SNPs were created for increasing and decreasing positions, 1 file with unknown positions and 1 file with multiple positions.
 
 
 # Data Processing
@@ -87,16 +88,17 @@ Here is my snippet of code used for data processing.
 
 ``` awk -v OFS='\t' 'BEGIN {print "SNP_ID", "Chromosome", "Position", "Genotype_data"}{print}' Teosinte_snp_sorted.txt | awk 'NR==1 || /multiple/' > multiple_teosinte_snp.txt```
 
-```for ((i=1; i<=10; i++)); do awk -v i="$i" '{if ($2==i) print $0}' Teosinte_snp_sorted.txt | sort -k3,3n | awk -v OFS='\t' 'BEGIN{print "SNP_ID", "Chromosome", "Position", "Genotype_data"}{print}' > chr"$i"_teosinte_increasing.txt; done```
+``` for ((i=1; i<=10; i++)); do awk -v i="$i" '{if ($2==i) print $0}' Teosinte_snp_sorted.txt | sort -k3,3n | awk -v OFS='\t' 'BEGIN{print "SNP_ID", "Chromosome", "Position", "Genotype_data"}{print}' > chr"$i"_teosinte_increasing.txt; done```
 
 
-```for ((i=1; i<=10; i++)); do awk -v i="$i" '{if ($2==i) print $0}' Teosinte_snp_sorted.txt | sort -k3,3nr | sed 's/?/-/g' | awk -v OFS='\t' 'BEGIN{print "SNP_ID", "Chromosome", "Position", "Genotype_data"}{print}' > chr"$i"_teosinte_decreasing.txt; done```
+``` for ((i=1; i<=10; i++)); do awk -v i="$i" '{if ($2==i) print $0}' Teosinte_snp_sorted.txt | sort -k3,3nr | sed 's/?/-/g' | awk -v OFS='\t' 'BEGIN{print "SNP_ID", "Chromosome", "Position", "Genotype_data"}{print}' > chr"$i"_teosinte_decreasing.txt; done```
 
 Here is a brief description of what my code does
-1. The SNP_ID and SNP data for the maize group (ZMPBA, ZMPIL, ZMPJA) in the third column were pattern selected and columns 4 through 986 were extracted with headers.
+1. The SNP_ID and SNP data for the maize group (ZMPBA, ZMPIL, ZMPJA) in the third column were pattern-selected and columns 4 through 986 were extracted with headers.
 2. The data is transposed to convert rows into columns.
 3. The contents of ``` transposed_teosinte_ genotypes.txt```   were sorted based on SNP_ID.
 4. The files ```snp_position_sorted.txt``` and ```teosinte_sorted.txt``` are joined together.
-5. SNPs with unknown and multiple positions in the genome were extracted from the joint file. A header specifying SNP_ID , Chromosome, Position and Genotype Data was added.
-6. A for loop is applied to seperate the data according to chromosome, and sorted based on increasing and decreasing positions on the third column. A header is included to specify SNP_ID, Chromosome, Position and Genotype all within the data file. 
+5. SNPs with unknown and multiple positions in the genome were extracted from the joint file. A header specifying SNP_ID, Chromosome, Position and Genotype Data was added.
+6. A for loop is applied to separate the data according to chromosome and sorted based on increasing and decreasing positions on the third column. A header is included to specify SNP_ID, Chromosome, Position and Genotype all within the data file. 
 7. For the files with decreasing positions, missing data encoded by ? is replaced by - within the for loop command.
+8. A total of 20 files with SNPs were created for increasing and decreasing positions, 1 file with unknown positions and 1 file with multiple positions.
