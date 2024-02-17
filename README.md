@@ -15,9 +15,9 @@
 
 By inspecting this file, I learned that
 
-1. It contains 2783 lines, 2744038 words and 11051939 characters
-2. It contains 986 columns
-3. It has a file size of 6.7M
+I. It contains 2783 lines, 2744038 words and 11051939 characters
+II. It contains 986 columns
+III. It has a file size of 6.7M
 
 
 ### Attributes of  ``` snp_position.txt ```
@@ -31,9 +31,9 @@ du -h snp_position.txt
 ```
 By inspecting this file, I learned that.
 
-1. It contains 984 lines, 13198 words, 82763 characters
-2. It contains 15 columns
-3. It has a file size of 49k
+I. It contains 984 lines, 13198 words, 82763 characters
+II. It contains 15 columns
+III. It has a file size of 49k
    
 
 ## Data Processing
